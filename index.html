@@ -11,10 +11,21 @@
             padding: 20px; 
             background-color: #f5f5f5; 
             color: #333; 
+            font-size: 16px; /* Base font size for readability */
         }
-        h1 { text-align: center; color: #2c3e50; margin-bottom: 10px; }
-        p.subtitle { text-align: center; font-style: italic; color: #7f8c8d; margin-bottom: 30px; }
-        table { width: 90%; margin: 0 auto; border-collapse: collapse; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 10px; font-size: 1.5em; }
+        p.subtitle { text-align: center; font-style: italic; color: #7f8c8d; margin-bottom: 20px; font-size: 1em; }
+        .table-container { 
+            overflow-x: auto; 
+            margin-bottom: 20px; 
+        }
+        table { 
+            width: 100%; 
+            min-width: 600px; /* Ensure table has a minimum width */
+            margin: 0 auto; 
+            border-collapse: collapse; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+        }
         th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
         th { background-color: #3498db; color: white; font-weight: bold; cursor: pointer; }
         th:hover { background-color: #2980b9; }
@@ -30,25 +41,36 @@
             margin-right: 5px; 
             vertical-align: middle; 
         }
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            h1 { font-size: 1.2em; }
+            p.subtitle { font-size: 0.9em; }
+            table { font-size: 0.8em; }
+            th, td { padding: 8px; }
+            .table-container { margin-bottom: 10px; }
+        }
     </style>
 </head>
 <body>
     <h1>2025 Tax Efficiency Index</h1>
     <p class="subtitle">Ranking countries by tax burden vs. government performance</p>
-    <table id="taxTable">
-        <thead>
-            <tr>
-                <th onclick="sortTable(0)">Rank</th>
-                <th onclick="sortTable(1)">Country</th>
-                <th onclick="sortTable(2)">Tax-to-GDP (%)</th>
-                <th onclick="sortTable(3)">HDI</th>
-                <th onclick="sortTable(4)">Gov. Effectiveness</th>
-                <th onclick="sortTable(5)">Index Score</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-    </table>
-    <footer style="text-align: center; margin-top: 30px; font-size: 0.9em; color: #7f8c8d;">
+    <div class="table-container">
+        <table id="taxTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Rank</th>
+                    <th onclick="sortTable(1)">Country</th>
+                    <th onclick="sortTable(2)">Tax-to-GDP (%)</th>
+                    <th onclick="sortTable(3)">HDI</th>
+                    <th onclick="sortTable(4)">Gov. Effectiveness</th>
+                    <th onclick="sortTable(5)">Index Score</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+    <footer style="text-align: center; margin-top: 20px; font-size: 0.9em; color: #7f8c8d;">
         <p><strong>Formula:</strong> Index Score = (HDI + Government Effectiveness) / max(Tax-to-GDP / 100, 0.15)</p>
         <p><strong>Data Sources:</strong> 
             <a href="https://data.oecd.org/tax/tax-revenue.htm" target="_blank" style="color: #3498db;">OECD (Tax-to-GDP)</a> | 
@@ -97,7 +119,7 @@
                     const tr = document.createElement('tr');
                     cols.forEach((col, idx) => {
                         const td = document.createElement('td');
-                        if (idx === 1) { // Country column
+                        if (idx === 1) {
                             const country = col.trim();
                             const countryCode = countryFlags[country];
                             if (countryCode) {
@@ -139,7 +161,7 @@
             rows.sort((a, b) => {
                 let aVal = a.cells[col].textContent;
                 let bVal = b.cells[col].textContent;
-                if (col === 1) { // Strip image for sorting
+                if (col === 1) {
                     aVal = a.cells[col].lastChild.textContent.trim();
                     bVal = b.cells[col].lastChild.textContent.trim();
                 }
