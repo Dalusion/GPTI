@@ -5,144 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2025 Tax Efficiency Index</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        p.subtitle {
-            text-align: center;
-            font-style: italic;
-            color: #7f8c8d;
-            margin-bottom: 30px;
-        }
-        table {
-            width: 90%;
-            margin: 0 auto;
-            border-collapse: collapse;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: center;
-        }
-        th {
-            background-color: #3498db;
-            color: white;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #ecf0f1;
-        }
-        tr:hover {
-            background-color: #dfe6e9;
-        }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5; color: #333; }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 10px; }
+        p.subtitle { text-align: center; font-style: italic; color: #7f8c8d; margin-bottom: 30px; }
+        table { width: 90%; margin: 0 auto; border-collapse: collapse; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background-color: #3498db; color: white; font-weight: bold; cursor: pointer; }
+        th:hover { background-color: #2980b9; }
+        tr:nth-child(even) { background-color: #ecf0f1; }
+        tr:hover { background-color: #dfe6e9; }
     </style>
 </head>
 <body>
     <h1>2025 Tax Efficiency Index</h1>
     <p class="subtitle">Ranking countries by tax burden vs. government performance</p>
-    <table>
-        <tr>
-            <th>Rank</th>
-            <th>Country</th>
-            <th>Tax-to-GDP (%)</th>
-            <th>HDI</th>
-            <th>Gov. Effectiveness</th>
-            <th>Index Score</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Singapore</td>
-            <td>13.7</td>
-            <td>0.949</td>
-            <td>2.14</td>
-            <td>22.15</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Ireland</td>
-            <td>22.7</td>
-            <td>0.950</td>
-            <td>1.38</td>
-            <td>10.28</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Switzerland</td>
-            <td>28.5</td>
-            <td>0.967</td>
-            <td>1.80</td>
-            <td>9.52</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>United States</td>
-            <td>26.6</td>
-            <td>0.927</td>
-            <td>1.25</td>
-            <td>8.17</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Canada</td>
-            <td>33.2</td>
-            <td>0.935</td>
-            <td>1.60</td>
-            <td>7.64</td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Norway</td>
-            <td>39.0</td>
-            <td>0.966</td>
-            <td>1.90</td>
-            <td>7.35</td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>Japan</td>
-            <td>34.2</td>
-            <td>0.920</td>
-            <td>1.55</td>
-            <td>7.23</td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>Denmark</td>
-            <td>46.3</td>
-            <td>0.948</td>
-            <td>1.92</td>
-            <td>6.19</td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td>Estonia</td>
-            <td>33.2</td>
-            <td>0.899</td>
-            <td>1.15</td>
-            <td>6.17</td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>Greece</td>
-            <td>38.7</td>
-            <td>0.893</td>
-            <td>0.45</td>
-            <td>3.47</td>
-        </tr>
+    <table id="taxTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Rank</th>
+                <th onclick="sortTable(1)">Country</th>
+                <th onclick="sortTable(2)">Tax-to-GDP (%)</th>
+                <th onclick="sortTable(3)">HDI</th>
+                <th onclick="sortTable(4)">Gov. Effectiveness</th>
+                <th onclick="sortTable(5)">Index Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Singapore</td><td>13.7</td><td>0.949</td><td>2.14</td><td>20.59</td></tr>
+            <tr><td>2</td><td>Ireland</td><td>22.7</td><td>0.950</td><td>1.38</td><td>10.28</td></tr>
+            <tr><td>3</td><td>Switzerland</td><td>28.5</td><td>0.967</td><td>1.80</td><td>9.52</td></tr>
+            <tr><td>4</td><td>Chile</td><td>20.7</td><td>0.860</td><td>0.95</td><td>8.74</td></tr>
+            <tr><td>5</td><td>Australia</td><td>29.2</td><td>0.946</td><td>1.53</td><td>8.48</td></tr>
+            <tr><td>6</td><td>United States</td><td>26.6</td><td>0.927</td><td>1.25</td><td>8.17</td></tr>
+            <tr><td>7</td><td>New Zealand</td><td>32.0</td><td>0.937</td><td>1.62</td><td>7.99</td></tr>
+            <tr><td>8</td><td>Canada</td><td>33.2</td><td>0.935</td><td>1.60</td><td>7.64</td></tr>
+            <tr><td>9</td><td>Norway</td><td>39.0</td><td>0.966</td><td>1.90</td><td>7.35</td></tr>
+            <tr><td>10</td><td>China</td><td>19.2</td><td>0.788</td><td>0.62</td><td>7.33</td></tr>
+            <tr><td>11</td><td>South Korea</td><td>29.9</td><td>0.925</td><td>1.24</td><td>7.25</td></tr>
+            <tr><td>12</td><td>Japan</td><td>34.2</td><td>0.920</td><td>1.55</td><td>7.23</td></tr>
+            <tr><td>13</td><td>United Kingdom</td><td>33.5</td><td>0.940</td><td>1.28</td><td>6.62</td></tr>
+            <tr><td>14</td><td>Finland</td><td>41.9</td><td>0.942</td><td>1.82</td><td>6.59</td></tr>
+            <tr><td>15</td><td>Netherlands</td><td>39.7</td><td>0.946</td><td>1.66</td><td>6.56</td></tr>
+            <tr><td>16</td><td>Sweden</td><td>42.6</td><td>0.947</td><td>1.74</td><td>6.31</td></tr>
+            <tr><td>17</td><td>Denmark</td><td>46.3</td><td>0.948</td><td>1.92</td><td>6.19</td></tr>
+            <tr><td>18</td><td>Germany</td><td>38.3</td><td>0.950</td><td>1.42</td><td>6.19</td></tr>
+            <tr><td>19</td><td>Estonia</td><td>33.2</td><td>0.899</td><td>1.15</td><td>6.17</td></tr>
+            <tr><td>20</td><td>Portugal</td><td>35.2</td><td>0.874</td><td>1.07</td><td>5.52</td></tr>
+            <tr><td>21</td><td>Spain</td><td>38.0</td><td>0.911</td><td>0.96</td><td>4.92</td></tr>
+            <tr><td>22</td><td>France</td><td>45.6</td><td>0.910</td><td>1.33</td><td>4.91</td></tr>
+            <tr><td>23</td><td>India</td><td>17.7</td><td>0.644</td><td>0.18</td><td>4.65</td></tr>
+            <tr><td>24</td><td>Mexico</td><td>16.8</td><td>0.781</td><td>-0.09</td><td>4.11</td></tr>
+            <tr><td>25</td><td>Nigeria</td><td>6.5</td><td>0.548</td><td>-1.03</td><td>3.67</td></tr>
+            <tr><td>26</td><td>Italy</td><td>42.8</td><td>0.906</td><td>0.62</td><td>3.57</td></tr>
+            <tr><td>27</td><td>Greece</td><td>38.7</td><td>0.893</td><td>0.45</td><td>3.47</td></tr>
+            <tr><td>28</td><td>South Africa</td><td>26.0</td><td>0.717</td><td>0.11</td><td>3.18</td></tr>
+            <tr><td>29</td><td>Brazil</td><td>33.7</td><td>0.760</td><td>-0.19</td><td>1.69</td></tr>
+            <tr><td>30</td><td>Russia</td><td>22.8</td><td>0.821</td><td>-0.31</td><td>2.24</td></tr>
+        </tbody>
     </table>
     <footer style="text-align: center; margin-top: 30px; font-size: 0.9em; color: #7f8c8d;">
-    <p>Index Score = (HDI + Government Effectiveness) / (Tax-to-GDP / 100). Data from OECD, UNDP, and World Bank (2023/2024 estimates).</p>
-    <p>Built by dalusion with help from Grok (xAI).</p>
-</footer>
+        <p>Index Score = (HDI + Gov. Effectiveness) / max(Tax-to-GDP / 100, 0.15). Data from OECD, UNDP, World Bank (2023/2024).</p>
+        <p>Built by dalusion with help from Grok (xAI).</p>
+    </footer>
+    <script>
+        let sortDirection = 5; // Default sort by Index Score (column 5)
+        let sortAsc = false;
+
+        window.onload = () => sortTable(sortDirection); // Sort by Index Score on load
+
+        function sortTable(col) {
+            const table = document.getElementById("taxTable");
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+            
+            if (sortDirection === col) sortAsc = !sortAsc; // Toggle direction if same column
+            else { sortDirection = col; sortAsc = true; } // New column, default ascending
+
+            rows.sort((a, b) => {
+                let aVal = a.cells[col].textContent;
+                let bVal = b.cells[col].textContent;
+                if (col > 1) { // Numeric columns
+                    aVal = parseFloat(aVal);
+                    bVal = parseFloat(bVal);
+                    return sortAsc ? aVal - bVal : bVal - aVal;
+                }
+                return sortAsc ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal); // Text
+            });
+
+            // Reassign ranks
+            rows.forEach((row, idx) => row.cells[0].textContent = idx + 1);
+
+            // Rebuild table
+            tbody.innerHTML = "";
+            rows.forEach(row => tbody.appendChild(row));
+        }
+    </script>
 </body>
 </html>
