@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2025 Global Tax Performance Index</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { 
             font-family: Arial, sans-serif; 
@@ -19,7 +20,17 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
         }
+        .logo {
+            margin-right: 10px;
+            font-size: 1.5em;
+            color: white;
+        }
+        .logo i { margin-right: 5px; }
         h1 { 
             text-align: center; 
             color: white; 
@@ -35,6 +46,7 @@
             color: #ecf0f1; 
             margin: 5px 0 20px; 
             font-size: 1em; 
+            width: 100%;
         }
         .table-container { 
             overflow-x: auto; 
@@ -66,6 +78,7 @@
         @media (max-width: 600px) {
             body { padding: 10px; }
             .header { padding: 15px; border-radius: 5px; }
+            .logo { font-size: 1.2em; margin-right: 8px; }
             h1 { font-size: 1.2em; letter-spacing: 1px; }
             p.subtitle { font-size: 0.9em; }
             table { font-size: 0.8em; }
@@ -76,6 +89,9 @@
 </head>
 <body>
     <div class="header">
+        <div class="logo">
+            <i class="fas fa-globe"></i><i class="fas fa-dollar-sign"></i>
+        </div>
         <h1>Global Tax Performance Index (GTPI)</h1>
         <p class="subtitle">Ranking countries by tax burden vs. government performance</p>
     </div>
