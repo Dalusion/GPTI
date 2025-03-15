@@ -6,7 +6,7 @@
     <title>2025 Tax Efficiency Index</title>
     <style>
         body { 
-            font-family: Arial, 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif; 
+            font-family: Arial, sans-serif; 
             margin: 0; 
             padding: 20px; 
             background-color: #f5f5f5; 
@@ -24,6 +24,12 @@
         .yellow { background-color: #f1c40f; }
         .orange { background-color: #e67e22; }
         .red { background-color: #e74c3c; }
+        td img { 
+            width: 16px; 
+            height: 12px; 
+            margin-right: 5px; 
+            vertical-align: middle; 
+        }
     </style>
 </head>
 <body>
@@ -72,12 +78,6 @@
             'Malaysia': 'MY', 'Indonesia': 'ID', 'Philippines': 'PH', 'Vietnam': 'VN', 'Bangladesh': 'BD'
         };
 
-        function getFlagEmoji(countryCode) {
-            if (!countryCode) return '';
-            const codePoints = countryCode.toUpperCase().split('').map(char => 127397 + char.charCodeAt(0));
-            return String.fromCodePoint(...codePoints);
-        }
-
         let sortDirection = 5;
         let sortAsc = false;
 
@@ -97,11 +97,19 @@
                     const tr = document.createElement('tr');
                     cols.forEach((col, idx) => {
                         const td = document.createElement('td');
-                        if (idx === 1) {
+                        if (idx === 1) { // Country column
                             const country = col.trim();
-                            const flag = getFlagEmoji(countryFlags[country]);
-                            if (!flag) console.log(`No flag for: ${country}`);
-                            td.textContent = `${flag} ${country}`;
+                            const countryCode = countryFlags[country];
+                            if (countryCode) {
+                                const img = document.createElement('img');
+                                img.src = `https://flagcdn.com/16x12/${countryCode.toLowerCase()}.png`;
+                                img.alt = `${country} flag`;
+                                td.appendChild(img);
+                                td.append(country);
+                            } else {
+                                console.log(`No flag for: ${country}`);
+                                td.textContent = country;
+                            }
                         } else {
                             td.textContent = col;
                         }
@@ -131,9 +139,9 @@
             rows.sort((a, b) => {
                 let aVal = a.cells[col].textContent;
                 let bVal = b.cells[col].textContent;
-                if (col === 1) {
-                    aVal = aVal.replace(/^[^\s]+/, '').trim();
-                    bVal = bVal.replace(/^[^\s]+/, '').trim();
+                if (col === 1) { // Strip image for sorting
+                    aVal = a.cells[col].lastChild.textContent.trim();
+                    bVal = b.cells[col].lastChild.textContent.trim();
                 }
                 if (col > 1) {
                     aVal = parseFloat(aVal);
