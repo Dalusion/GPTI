@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025 Tax Efficiency Index</title>
+    <title>2025 Global Tax Performance Index</title>
     <style>
         body { 
             font-family: Arial, sans-serif; 
@@ -11,17 +11,38 @@
             padding: 20px; 
             background-color: #f5f5f5; 
             color: #333; 
-            font-size: 16px; /* Base font size for readability */
+            font-size: 16px; 
         }
-        h1 { text-align: center; color: #2c3e50; margin-bottom: 10px; font-size: 1.5em; }
-        p.subtitle { text-align: center; font-style: italic; color: #7f8c8d; margin-bottom: 20px; font-size: 1em; }
+        .header {
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+        h1 { 
+            text-align: center; 
+            color: white; 
+            margin: 0; 
+            font-size: 2em; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+        }
+        p.subtitle { 
+            text-align: center; 
+            font-style: italic; 
+            color: #ecf0f1; 
+            margin: 5px 0 20px; 
+            font-size: 1em; 
+        }
         .table-container { 
             overflow-x: auto; 
             margin-bottom: 20px; 
         }
         table { 
             width: 100%; 
-            min-width: 600px; /* Ensure table has a minimum width */
+            min-width: 600px; 
             margin: 0 auto; 
             border-collapse: collapse; 
             box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
@@ -44,7 +65,8 @@
         /* Mobile adjustments */
         @media (max-width: 600px) {
             body { padding: 10px; }
-            h1 { font-size: 1.2em; }
+            .header { padding: 15px; border-radius: 5px; }
+            h1 { font-size: 1.2em; letter-spacing: 1px; }
             p.subtitle { font-size: 0.9em; }
             table { font-size: 0.8em; }
             th, td { padding: 8px; }
@@ -53,8 +75,10 @@
     </style>
 </head>
 <body>
-    <h1>2025 Tax Efficiency Index</h1>
-    <p class="subtitle">Ranking countries by tax burden vs. government performance</p>
+    <div class="header">
+        <h1>Global Tax Performance Index (GTPI)</h1>
+        <p class="subtitle">Ranking countries by tax burden vs. government performance</p>
+    </div>
     <div class="table-container">
         <table id="taxTable">
             <thead>
@@ -84,7 +108,7 @@
             <li><strong>Gov. Effectiveness:</strong> How well a government delivers (-2.5 to 2.5). Higher means more competent and reliable.</li>
             <li><strong>Index Score:</strong> Our custom metric! Combines HDI and Gov. Effectiveness, divided by tax burden (min 15%). Higher = more bang for your tax buck.</li>
         </ul>
-        <p>Built by dalusion with help from Grok (xAI). Last updated: March 15, 2025.</p>
+        <p>Built by DevDevDavid with help from Grok (xAI). Last updated: March 15, 2025.</p>
     </footer>
     <script>
         const countryFlags = {
