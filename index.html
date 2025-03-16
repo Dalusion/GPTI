@@ -104,7 +104,7 @@
                     <th onclick="sortTable(2)">Tax-to-GDP (%)</th>
                     <th onclick="sortTable(3)">HDI</th>
                     <th onclick="sortTable(4)">Gov. Effectiveness</th>
-                    <th onclick="sortTable(5)">GTPI Index Score</th>
+                    <th onclick="sortTable(5)">Index Score (GTPI)</th>
                 </tr>
             </thead>
             <tbody id="tableBody"></tbody>
@@ -141,7 +141,7 @@
         };
 
         let sortDirection = 5;
-        let sortAsc = false; // Set to false for descending order by default (best to worst)
+        let sortAsc = false; // Set to false for descending order (best to worst)
 
         fetch('data.csv')
             .then(response => response.text())
@@ -186,7 +186,7 @@
                     });
                     tbody.appendChild(tr);
                 });
-                // Sort by Index (GTPI) descending on load
+                // Sort by Index Score (GTPI) descending on load (best to worst)
                 sortTable(5);
             })
             .catch(error => console.error('Error fetching CSV:', error));
@@ -199,7 +199,7 @@
             if (sortDirection === col) sortAsc = !sortAsc;
             else { 
                 sortDirection = col; 
-                sortAsc = (col === 5) ? false : true; // Default descending for Index (GTPI), ascending for others
+                sortAsc = (col === 5) ? false : true; // Default descending for Index Score (GTPI), ascending for others
             }
 
             rows.sort((a, b) => {
@@ -213,7 +213,8 @@
                 if (col > 1) {
                     aVal = parseFloat(aVal);
                     bVal = parseFloat(bVal);
-                    return sortAsc ? aVal - bVal : bVal - aVal; // Fixed: sortAsc=false means descending (best to worst)
+                    // When sortAsc is false, sort descending (best to worst, highest to lowest)
+                    return sortAsc ? bVal - aVal : aVal - bVal; // Fixed: flipped the comparison logic
                 }
                 return sortAsc ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
             });
