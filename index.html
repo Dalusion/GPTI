@@ -104,7 +104,7 @@
                     <th onclick="sortTable(2)">Tax-to-GDP (%)</th>
                     <th onclick="sortTable(3)">HDI</th>
                     <th onclick="sortTable(4)">Gov. Effectiveness</th>
-                    <th onclick="sortTable(5)">Index (GTPI)</th> <!-- Updated header -->
+                    <th onclick="sortTable(5)">GTPI Index Score</th>
                 </tr>
             </thead>
             <tbody id="tableBody"></tbody>
@@ -141,7 +141,7 @@
         };
 
         let sortDirection = 5;
-        let sortAsc = false; // Changed to false for descending order by default
+        let sortAsc = false; // Set to false for descending order by default (best to worst)
 
         fetch('data.csv')
             .then(response => response.text())
@@ -208,11 +208,12 @@
                 if (col === 1) {
                     aVal = a.cells[col].lastChild.textContent.trim();
                     bVal = b.cells[col].lastChild.textContent.trim();
+                    return sortAsc ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
                 }
                 if (col > 1) {
                     aVal = parseFloat(aVal);
                     bVal = parseFloat(bVal);
-                    return sortAsc ? aVal - bVal : bVal - aVal; // Ascending or descending based on sortAsc
+                    return sortAsc ? aVal - bVal : bVal - aVal; // Fixed: sortAsc=false means descending (best to worst)
                 }
                 return sortAsc ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
             });
